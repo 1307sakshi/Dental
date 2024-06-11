@@ -1,0 +1,35 @@
+{% extends "cust/base.html" %}
+
+{% block page %}
+
+ <h1 class="text-center mt-5">Login</h1>
+
+{%if messages%} 
+  {% for i in messages%} 
+  <div class="alert alert-warning alert-dismissible fade show" role="alert">
+    <strong>{{i}}</strong> 
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+  {% endfor %}
+{% endif %}
+
+<style> 
+    body {
+      background-color: #65dbe36f; 
+    }
+</style>
+<form style="padding-left:300px;padding-right:300px;" method="POST" action="{% url 'login' %}">
+    {% csrf_token %}
+    <div class="mb-3">
+      <label for="user name" class="form-label">User Name</label>
+      <input type="text" class="form-control" id="exampleInputEmail1" name="username" aria-describedby="emailHelp">
+    </div>
+    <div class="mb-3" >
+      <label for="exampleInputPassword1" class="form-label">Password</label>
+      <input type="password" class="form-control" name="password" id="exampleInputPassword1">
+    </div>
+    
+    <button type="submit" class="btn btn-primary">Login</button>
+  </form>
+{% endblock page %}
+
