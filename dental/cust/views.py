@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import login , authenticate, logout
 from django.contrib import messages
 from cust.forms import RegisterForm
+from django.contrib.auth.decorators import login_required
 
 
 # Create your views here.
@@ -44,6 +45,9 @@ def register(request):
     else:
         form = RegisterForm()
     return render(request,'cust/register.html', {'form': form})
+
+
+
 
 
 

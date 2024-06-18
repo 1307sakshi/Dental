@@ -11,3 +11,4 @@ class customer(models.Model):
     
     #to check when the user or the customer added to our list
     created_at = models.DateTimeField(auto_now=False, auto_now_add=False,null=True)
+    

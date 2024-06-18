@@ -54,6 +54,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'dental.urls'
+LOGIN_URL = '/login/'
 
 TEMPLATES = [
     {

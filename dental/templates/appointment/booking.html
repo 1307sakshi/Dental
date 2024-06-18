@@ -1,0 +1,131 @@
+{% extends "cust/base.html" %}
+
+{% block page %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Appointment - Dental Appointment System</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin-top: 300px ;
+        }
+        .container {
+            max-width: 500px;
+            width: 100%;
+            padding: 20px;
+            background: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            text-align: center;
+        }
+        h1 {
+            margin-bottom: 20px;
+            color: #333;
+            font-weight: 700;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        .form-group {
+            text-align: left;
+            margin-bottom: 15px;
+        }
+        label {
+            font-weight: 500;
+        }
+        input, textarea, select {
+            margin-top: 5px;
+            padding: 12px;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            width: 100%;
+            transition: border-color 0.3s;
+        }
+        input:focus, textarea:focus, select:focus {
+            border-color: #007BFF;
+            outline: none;
+        }
+        textarea {
+            resize: vertical;
+        }
+        button {
+            margin-top: 20px;
+            padding: 12px 15px;
+            font-size: 16px;
+            font-weight: 500;
+            color: #fff;
+            background-color: #007BFF;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Book an Appointment</h1>
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="name">Name:</label>
+                {{ form.name }}
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                {{ form.email }}
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone Number:</label>
+                {{ form.phone }}
+            </div>
+            <div class="form-group">
+                <label for="date">Date of Appointment:</label>
+                {{ form.date }}
+            </div>
+            <div class="form-group">
+                <label for="time">Time of Appointment:</label>
+                {{ form.time }}
+            </div>
+            <div class="form-group">
+                <label for="message">Message (Optional):</label>
+                {{ form.message }}
+            </div>
+            <button type="submit">Book Appointment</button>
+        </form>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script>
+        flatpickr("#id_date", {
+            altInput: true,
+            altFormat: "F j, Y",
+            dateFormat: "Y-m-d",
+        });
+        flatpickr("#id_time", {
+            enableTime: true,
+            noCalendar: true,
+            dateFormat: "H:i",
+            time_24hr: true,
+        });
+    </script>
+</body>
+</html>
+{% endblock page %}

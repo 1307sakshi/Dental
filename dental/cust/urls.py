@@ -9,6 +9,6 @@ urlpatterns=[
     path('register/',register,name='register'),
     path('login/',logins,name='login'),
     path('logout/',logouts,name='logout'),
-    
+   
     
 ]
