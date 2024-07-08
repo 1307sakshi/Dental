@@ -1,0 +1,41 @@
+{% extends "cust/base.html" %}
+
+{% block page %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <form method="post">
+                {% csrf_token %}
+                <input type="hidden" id="id" name="id" value="{{ ser.id }}">
+
+                <div class="mb-3">
+                    <label for="name" class="form-label">Name</label>
+                    <input type="text" class="form-control" id="name" name="name" value="{{ ser.name }}">
+                </div>
+
+                <div class="mb-3">
+                    <label for="mobile" class="form-label">Mobile</label>
+                    <textarea class="form-control" id="mobile" name="mobile" rows="3">{{ ser.mobile }}</textarea>
+                </div>
+
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="email" name="email" value="{{ ser.email }}">
+                </div>
+
+                <div class="mb-3">
+                    <label for="address" class="form-label">Address</label>
+                    <input type="text" class="form-control" id="address" name="address" value="{{ ser.address }}">
+                </div>
+
+                <div class="mb-3">
+                    <label for="gender" class="form-label">Gender</label>
+                    <input type="text" class="form-control" id="gender" name="gender" value="{{ ser.gender }}">
+                </div>
+
+                <button type="submit" class="btn btn-primary w-100">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock page %}

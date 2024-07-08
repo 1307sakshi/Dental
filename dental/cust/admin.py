@@ -5,7 +5,7 @@ from cust.models import customer
 
 @admin.register(customer)
 class customerAdmin(admin.ModelAdmin):
-    list_display= ['created_at','name', 'mobile','email', 'address', 'gender']
+    list_display= ['user','created_at','name', 'mobile','email', 'address', 'gender']
     
 # admin.site.register(customer, customerAdmin)
 

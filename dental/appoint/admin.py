@@ -5,6 +5,6 @@ from appoint.models import Appointment
 
 @admin.register(Appointment)
 class AppointmentAdmin(admin.ModelAdmin):
-    list_display= ['name','email', 'phone','date', 'time', 'message','status']
+    list_display= ['user','name','email', 'phone','date', 'time', 'message','status']
     
 

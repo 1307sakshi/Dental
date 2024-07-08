@@ -3,8 +3,8 @@ from django.contrib.auth import login , authenticate, logout
 from django.contrib import messages
 from cust.forms import RegisterForm
 from django.contrib.auth.decorators import login_required
-
-
+from cust.models import customer
+from appoint.models import Appointment
 # Create your views here.
 def home(request):
     return render(request,'cust/home.html')
@@ -46,6 +46,45 @@ def register(request):
         form = RegisterForm()
     return render(request,'cust/register.html', {'form': form})
 
+@login_required
+def custprofilepage(request):
+    user_profile, created = customer.objects.get_or_create(user=request.user)
+    user=request.user
+    appointments = Appointment.objects.filter(user=request.user)
+    cuser={
+        'user':user,
+        'appointments':appointments,
+    }
+    
+    return render(request, 'cust/profilepage.html',cuser)
+
+
+@login_required
+def editprofile(request,id):
+    if request.method == 'POST':
+        sname=request.POST.get('name')
+        smobile=request.POST.get('mobile')
+        semail=request.POST.get('email')
+        saddress=request.POST.get('address')
+        sgender=request.POST.get('gender')
+        
+        sid=request.POST.get('id')
+        if sid:
+            store=customer.objects.get(id=sid)
+            store.name=sname 
+            store.mobile= smobile
+            store.email=semail
+            store.address=saddress
+            store.gender=sgender
+            
+            store.save()
+            
+            return redirect('profilepage')
+        
+        else:
+            pass
+    s=customer.objects.get(pk=id)
+    return render(request,'cust/editprofile.html',{'ser':s})
 
 
 
