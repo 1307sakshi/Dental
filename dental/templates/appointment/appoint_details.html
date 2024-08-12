@@ -1,34 +1,161 @@
-<!-- appointment/appointment_details.html -->
 {% extends "cust/base.html" %}
 
-{% block title %}Appointment Details{% endblock title %}
+{% block title %}Appointment Summary{% endblock title %}
 
 {% block page %}
 <div class="container my-5">
-    <h1 class="mb-4">Appointment Details</h1>
-    <p><strong>Order ID:</strong> {{ appointment.id }}</p>
-    <p><strong>User:</strong> {{ appointment.user.username }}</p>
-    <p><strong>Preferred Date:</strong> {{ appointment.preferred_date }}</p>
-    <p><strong>Message:</strong> {{ appointment.message }}</p>
-    <h3>Services</h3>
-    <table class="table table-bordered table-striped">
-        <thead>
-            <tr>
-                <th>Service</th>
-                <th>Price</th>
-                <th>Total</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for item in appitems %}
-            <tr>
-                <td>{{ item.app_service.name }}</td>
-                <td>{{ item.app_service.price }}</td>
-                <td>{{ item.app_service.price|floatformat:2 }}</td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-    <h3>Total Price: Rs. {{ appointment.total_amount|floatformat:2 }}</h3>
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="appointment-card">
+                <div class="appointment-header">
+                    <h2><i class="bi bi-calendar-check"></i> Appointment Summary</h2>
+                </div>
+                <div class="appointment-details">
+                    <div class="detail-item">
+                        <span class="detail-title"><i class="bi bi-receipt"></i> Order ID:</span>
+                        <span class="detail-value">{{ appointment.id }}</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-title"><i class="bi bi-person"></i> User:</span>
+                        <span class="detail-value">{{ appointment.user.username }}</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-title"><i class="bi bi-calendar3"></i> Preferred Date:</span>
+                        <span class="detail-value">{{ appointment.preferred_date }}</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-title"><i class="bi bi-chat-text"></i> Message:</span>
+                        <span class="detail-value">{{ appointment.message }}</span>
+                    </div>
+                </div>
+                <div class="services-overview">
+                    <h3><i class="bi bi-list-check"></i> Services Overview</h3>
+                    <ul class="service-list">
+                        {% for item in appitems %}
+                        <li class="service-item">
+                            <span class="service-name">{{ item.app_service.name }}</span>
+                            <span class="service-price">Rs. {{ item.app_service.price|floatformat:2 }}</span>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div class="total-price">
+                    <span>Total Price:</span>
+                    <span class="price-amount">Rs. {{ appointment.total_amount|floatformat:2 }}</span>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+
+<style>
+    .appointment-card {
+        background: linear-gradient(145deg, #e6f7ff, #ffffff);
+        border-radius: 15px;
+        padding: 40px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease-in-out;
+    }
+
+    .appointment-card:hover {
+        transform: translateY(-10px);
+    }
+
+    .appointment-header {
+        border-bottom: 3px solid #00b4d8;
+        margin-bottom: 20px;
+        padding-bottom: 15px;
+        text-align: center;
+    }
+
+    .appointment-header h2 {
+        font-size: 30px;
+        font-weight: bold;
+        color: #0077b6;
+    }
+
+    .appointment-header i {
+        color: #00b4d8;
+        margin-right: 10px;
+    }
+
+    .appointment-details {
+        margin-bottom: 40px;
+    }
+
+    .detail-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 15px;
+        font-size: 18px;
+    }
+
+    .detail-title {
+        font-weight: 700;
+        color: #0077b6;
+        display: flex;
+        align-items: center;
+    }
+
+    .detail-title i {
+        margin-right: 8px;
+    }
+
+    .detail-value {
+        font-weight: 500;
+        color: #03045e;
+    }
+
+    .services-overview h3 {
+        font-size: 26px;
+        margin-bottom: 20px;
+        color: #00b4d8;
+        text-align: center;
+    }
+
+    .services-overview i {
+        margin-right: 8px;
+    }
+
+    .service-list {
+        list-style: none;
+        padding: 0;
+    }
+
+    .service-item {
+        display: flex;
+        justify-content: space-between;
+        padding: 12px 0;
+        border-bottom: 2px solid #caf0f8;
+        font-size: 18px;
+    }
+
+    .service-name {
+        font-weight: 600;
+        color: #03045e;
+    }
+
+    .service-price {
+        font-weight: 600;
+        color: #00b4d8;
+    }
+
+    .total-price {
+        display: flex;
+        justify-content: space-between;
+        font-size: 24px;
+        font-weight: bold;
+        color: #03045e;
+        margin-top: 40px;
+        background: #0077b6;
+        color: white;
+        padding: 15px;
+        border-radius: 10px;
+    }
+
+    .price-amount {
+        color: #00b4d8;
+    }
+</style>
 {% endblock page %}

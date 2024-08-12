@@ -48,13 +48,13 @@ def upserv(request, id):
         sdetail =request.POST.get('detail')
         sprice=request.POST.get('price')
         sid=request.POST.get('id')
-        simage=request.POST.get('piccture')
+        
         if sid:
             store=service.objects.get(id=sid)
             store.name=sname
             store.detail=sdetail
             store.price=sprice
-            store.piccture=simage
+            
             store.save()
             return redirect('/staff/aserv')
             

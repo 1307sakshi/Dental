@@ -27,7 +27,7 @@ class app(models.Model):
     app_service=models.ManyToManyField(service, through='appitem')
     created_at= models.DateTimeField(auto_now_add=True,null=True)
     total_amount=models.DecimalField(max_digits=7,decimal_places=2,null=True)
-  
+    finalized = models.BooleanField(default=False)
     preferred_date = models.DateField(null=True)
     message = models.TextField(blank=True, null=True)
     STATUS_CHOICES = [

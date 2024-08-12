@@ -56,7 +56,7 @@ def add(request,p_id):
         if not created:
             app_item.save()
 
-        #apps.total_amount += Decimal(ser.price)
+       
         apps.save()
 
         return redirect('appointment')
