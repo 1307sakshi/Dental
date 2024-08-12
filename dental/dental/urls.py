@@ -25,5 +25,7 @@ urlpatterns = [
     path('dadmin/',include ('dadmin.urls')),
     path('appoint/',include ('appoint.urls')),
     path('staff/',include ('staff.urls')),
-     
+    path('services/',include ('services.urls')),
+   
+        
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

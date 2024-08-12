@@ -4,7 +4,9 @@ from django.contrib import messages
 from cust.forms import RegisterForm
 from django.contrib.auth.decorators import login_required
 from cust.models import customer
-from appoint.models import Appointment
+from appoint.models import app
+
+
 # Create your views here.
 def home(request):
     return render(request,'cust/home.html')
@@ -12,6 +14,7 @@ def about(request):
     return render(request,'cust/about.html')
 def contact(request):
     return render(request,'cust/contacts.html')
+
 
 def logins(request):
     if request.method == 'POST':
@@ -41,7 +44,7 @@ def register(request):
         if form.is_valid():
             user = form.save()
             login(request, user)
-            return redirect('home')  # Redirect to a page after successful registration
+            return redirect('home')  
     else:
         form = RegisterForm()
     return render(request,'cust/register.html', {'form': form})
@@ -50,7 +53,7 @@ def register(request):
 def custprofilepage(request):
     user_profile, created = customer.objects.get_or_create(user=request.user)
     user=request.user
-    appointments = Appointment.objects.filter(user=request.user)
+    appointments = app.objects.filter(user=request.user).order_by('-created_at')
     cuser={
         'user':user,
         'appointments':appointments,

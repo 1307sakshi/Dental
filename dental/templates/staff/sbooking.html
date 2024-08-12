@@ -68,23 +68,27 @@
                     <th>Name</th>
                     <th>Email</th>
                     <th>Phone</th>
-                    <th>Date</th>
-                    <th>Time</th>
+                    <th>Preferred Date</th>
+                    
                     <th>Message</th>
                     <th>Status</th>
                     <th>Update Status</th>
+                    <th>Action</th>
                 </tr>
             </thead>
             <tbody>
                 {% for appointment in appointment %}
                 <tr>
-                    <td>{{ appointment.name }}</td>
-                    <td>{{ appointment.email }}</td>
-                    <td>{{ appointment.phone }}</td>
-                    <td>{{ appointment.date }}</td>
-                    <td>{{ appointment.time }}</td>
+                    <td>{{ appointment.user.username }}</td>
+                    <td>{{ appointment.user.customer.email }}</td>
+                    <td>{{ appointment.user.customer.mobile }}</td>
+                    <td>{{ appointment.preferred_date }}</td>
+                    
                     <td>{{ appointment.message }}</td>
                     <td>{{ appointment.status }}</td>
+                    <td>
+                        <a href="{% url 'appointment_details' appointment.pk %}" class="btn btn-info">View Details</a>
+                    </td>
                     <td>
                         <form method="post" class="form-inline">
                             {% csrf_token %}

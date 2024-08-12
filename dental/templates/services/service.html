@@ -1,0 +1,106 @@
+{% extends "cust/base.html" %}
+
+{% block page %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Services</title>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #fff;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        .header h1 {
+            font-size: 3rem;
+            color: #333;
+        }
+        .services {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+        .service {
+            background: #f9f9f9;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 30%;
+            margin-bottom: 20px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        .service:hover {
+            transform: scale(1.05);
+        }
+        .service img {
+            width: 200px;
+            height: 200px;
+            margin-bottom: 20px;
+        }
+        .service h2 {
+            font-size: 1.5rem;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        .service p {
+            font-size: 1rem;
+            color: #666;
+            margin-bottom: 20px;
+        }
+        .btn-readmore {
+            padding: 10px 20px;
+            font-size: 1rem;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .btn-readmore:hover {
+            background-color: #0056b3;
+        }
+        @media (max-width: 768px) {
+            .service {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Our Services</h1>
+            <p>Explore the wide range of services we offer to our customers.</p>
+        </div>
+        <div class="services">
+            {% for service in ser %}
+            <div class="service">
+                <img src="{{ service.piccture.url }}" alt="{{ service.name }}">
+                <h2>{{ service.name }}</h2>
+                <p>{{ service.detail }}</p>
+                <p><strong>Price:</strong> ${{ service.price }}</p>
+                <a href="{% url 'book_service' service.id %}" class="btn-book">Book</a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>
+{% endblock page %}

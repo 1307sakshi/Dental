@@ -91,7 +91,7 @@
 <body>
     <div class="container">
         <div class="profile-header">
-            <img src="profile-picture-url" alt="Profile Picture" class="profile-picture">
+            
             <div class="profile-details">
                 <h1>{{ user.username }}</h1>
                 <p>Name: {{ user.customer.name }}</p>
@@ -110,17 +110,23 @@
         <table>
             <thead>
                 <tr>
-                    <th>Date</th>
-                    <th>Time</th>
+                    <th>Sr.no</th>
+                    <th>Preferred Date</th>
+                    <th>Message</th>
                     <th>Status</th>
+                    <th>Action</th>
                 </tr>
             </thead>
             <tbody>
                 {% for appointment in appointments %}
                 <tr>
-                    <td>{{ appointment.date }}</td>
-                    <td>{{ appointment.time }}</td>
+                    <td>{{ appointment.id }}</td>
+                    <td>{{ appointment.preferred_date }}</td>
+                    <td>{{ appointment.message}}</td>
                     <td>{{ appointment.status }}</td>
+                    <td>
+                        <a href="{% url 'appointment_details' appointment.pk %}" class="btn btn-info">View Details</a>
+                    </td>
                 </tr>
                 {% endfor %}
             </tbody>
